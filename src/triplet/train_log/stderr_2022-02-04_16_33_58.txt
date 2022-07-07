@@ -1,0 +1,48 @@
+Downloading: "https://download.pytorch.org/models/resnet50-19c8e357.pth" to /root/.cache/torch/hub/checkpoints/resnet50-19c8e357.pth
+  0%|          | 0.00/97.8M [00:00<?, ?B/s]  5%|5         | 5.02M/97.8M [00:00<00:01, 52.7MB/s] 24%|##3       | 23.1M/97.8M [00:00<00:00, 133MB/s]  43%|####2     | 42.0M/97.8M [00:00<00:00, 163MB/s] 62%|######2   | 60.8M/97.8M [00:00<00:00, 176MB/s] 80%|########  | 78.5M/97.8M [00:00<00:00, 180MB/s] 98%|#########7| 95.6M/97.8M [00:00<00:00, 176MB/s]100%|##########| 97.8M/97.8M [00:00<00:00, 166MB/s]
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/threading.py", line 926, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.7/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "./tri_loss/dataset/Prefetcher.py", line 107, in enqueue
+    element = self.get_element(ptr - 1)
+  File "./tri_loss/dataset/TrainSet.py", line 55, in get_sample
+    for name in im_names]
+  File "./tri_loss/dataset/TrainSet.py", line 55, in <listcomp>
+    for name in im_names]
+  File "/usr/local/lib/python3.7/dist-packages/PIL/Image.py", line 2843, in open
+    fp = builtins.open(filename, "rb")
+OSError: [Errno 5] Input/output error: '/content/drive/MyDrive/Triplet Loss/person-reid-triplet-loss-baseline/market1501/images/00001420_0006_00000002.jpg'
+
+Exception in thread Thread-2:
+Traceback (most recent call last):
+  File "/usr/lib/python3.7/threading.py", line 926, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.7/threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "./tri_loss/dataset/Prefetcher.py", line 107, in enqueue
+    element = self.get_element(ptr - 1)
+  File "./tri_loss/dataset/TrainSet.py", line 55, in get_sample
+    for name in im_names]
+  File "./tri_loss/dataset/TrainSet.py", line 55, in <listcomp>
+    for name in im_names]
+  File "/usr/local/lib/python3.7/dist-packages/PIL/Image.py", line 2843, in open
+    fp = builtins.open(filename, "rb")
+OSError: [Errno 5] Input/output error: '/content/drive/MyDrive/Triplet Loss/person-reid-triplet-loss-baseline/market1501/images/00001470_0002_00000000.jpg'
+
+Traceback (most recent call last):
+  File "script/experiment/train.py", line 558, in <module>
+    main()
+  File "script/experiment/train.py", line 446, in main
+    ims, im_names, labels, mirrored, epoch_done = train_set.next_batch()
+  File "./tri_loss/dataset/TrainSet.py", line 73, in next_batch
+    samples, self.epoch_done = self.prefetcher.next_batch()
+  File "./tri_loss/dataset/Prefetcher.py", line 181, in next_batch
+    sample = self.enqueuer.queue1.get()
+  File "/usr/lib/python3.7/queue.py", line 170, in get
+    self.not_empty.wait()
+  File "/usr/lib/python3.7/threading.py", line 296, in wait
+    waiter.acquire()
+KeyboardInterrupt
